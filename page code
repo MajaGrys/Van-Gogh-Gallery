@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Tangerine">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
+    <title>Van Gogh's Gallery</title>
+    <style> 
+    /* sticky header: https://www.w3schools.com/howto/howto_js_sticky_header.asp
+About Van Gogh / Life / Paintings / 
+    */
+    body {
+        background-image: url(https://happywall-img-gallery.imgix.net/15665/almond_blossom_van_gogh_teal_display.jpg);
+        font-family: 'Lora';
+        text-align: justify;
+        margin: 15%;
+        margin-top: 3%;
+        margin-bottom: 3%;
+    }
+
+    header {
+        text-align: center;
+        font-family: 'Tangerine';
+        font-size: 70px;
+        text-shadow: 5px 5px 5px rgb(0, 0, 0, 0.7);
+    }
+
+    .tab {
+        overflow: hidden;
+        background-color: white;
+        border: 1px solid black;
+    }
+
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+        font-family: 'Lora';
+    }
+
+    .tab button:hover {
+        background-color: rgb(107,196,212);
+    }
+
+    .tab button.active {
+        background-color: rgb(13,146,155);
+    }
+
+    .tabcontent {
+        display: none;
+        background: rgb(256, 256, 256, 0.7);
+        padding: 10px 20px;
+        border: 1px solid black;
+        border-top: none;
+    }
+
+    img {
+        border: 5px double black;
+    }
+
+    /*About section*/
+
+    #About img {
+        display: block;
+        margin: auto;
+        width: 50%;
+        max-width: 500px;
+    }
+
+    .about {
+        padding: 0px 20px;
+    }
+
+    /*Early life section*/
+
+    .timeline {
+        position: relative;
+        padding: 10px 10px 10px 40px;
+        max-width: 700px;
+    }
+
+    .timeline::before { /* vertical line */
+        content: "";
+        width: 5px;
+        background-color: rgb(44,107,94);
+        position: absolute;
+        top: -10px;
+        bottom: -10px;
+        left: 30px;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    li {
+        background-color: white;
+        padding: 20px 30px;
+        position: relative;
+        border-radius: 6px;
+        margin-bottom: 10px;
+    }
+    
+    time {
+        color: #ff6a00;
+    }
+
+    .event:after {
+        content: '';
+	    position: absolute;
+	    left: 0;
+	    top: 30%;
+	    border: 22px solid transparent;
+	    border-right-color: white;
+	    border-left: 0;
+	    margin-top: -22px;
+	    margin-left: -22px;
+    }
+
+    li::after { /*circle on the line*/
+        content: "";
+        background: #fff;
+        border: 4px solid rgb(44,107,94);
+        width: 16px; height: 16px;
+        border-radius: 50%;
+        position: absolute;
+        top: 20%; left: -60px;
+    }
+
+    /*Paintings section*/
+
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    article {
+        flex: 100%;
+    }
+
+    #Paintings section {
+        align-items: center;
+    }
+
+    .painting {
+        width: 95%;
+    }
+
+    .description {
+        position: absolute;
+        opacity:0;
+        background: rgb(256, 256, 256, 0.5);
+        color: black;
+        transition: .5s ease;
+        padding: 20px;
+        max-width: 30%;
+        text-align: center;
+    }
+
+    article:hover .description {
+        opacity: 1;
+    }
+
+    @media screen and (min-width: 700px) {
+    header {font-size: 100px;}
+    article {flex: 50%; }
+    .description {max-width: 10%;}}
+
+    @media screen and (min-width: 1100px) {
+    header {font-size: 150px;}
+    #Paintings article {flex: 33%; }
+    }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <header>Van Gogh's Gallery</header>
+    <div class="tab">
+        <button class="tablinks" onclick="openPage(event, 'About')" id="defaultOpen">About Van Gogh</button>
+        <button class="tablinks" onclick="openPage(event, 'Life')">Life</button>
+        <button class="tablinks" onclick="openPage(event, 'Paintings')">Paintings</button>
+    </div>
+    
+    <div id="About" class="tabcontent">
+        <img src="https://media.nga.gov/iiif/54ee6643-e0f9-4b92-a1d2-441e5108724d/full/!588,600/0/default.jpg" alt="Van Gogh's self-portrait">
+        <p class="about">Vincent Willem van Gogh was a Dutch Post-Impressionist whose work highly influenced 20th-century art. He's created approximately 2100 artworks, including 860 oil paintings. The artist struggled with mental illness and remained poor and virtually unknown throughout his life, but nowadays is considered one of the greatest painters of his era.</p>
+    </div>
+
+    <div id="Life" class="tabcontent">
+        <div class="timeline">
+            <ul>
+                <li>
+                    <p class="event"><h3>30 March, 1853</h3> Vincent Van Gogh was born in Groot-Zundert, Netherlands.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>1 May, 1857</h3> The birth of Theo, Vincent's dear brother.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>1869</h3>Recommended by his uncle, Van Gogh started working at Goupil & Cie, an art dealership, in the Hague.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>1873</h3>Vincent was transferred to the London's Groupil Gallery.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>1879</h3>Van Gogh becomes a missionary at coal-mining district of Borinage in Belgium.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>1880</h3>The artist registered at Académie Royale des Beaux-Arts, started studying anatomy, modelling and perspective.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>1885</h3>Van Gogh finished his first masterpiece, <em>The Potato Eaters</em>.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>1888</h3>Van Gogh moved to Arles. During his time in Arles, he produced approximately 200 paintings and 100 drawings, including <em>Cafe Terrace at Night</em>, <em>Starry Night Over the Rhone</em> and <em>Sunflowers</em>.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>1889</h3>The artist is admitted to St Remy asylum. During his stay Van Gogh created one of his most known works, <em>Starry Night</em>.</p>
+                </li>
+                <li>
+                    <p class="event"><h3>29 July 1890</h3>Van Gogh died in Auvers-sur-Oise, France, aged 37.</p>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div id="Paintings" class="tabcontent">
+    <section>
+    <article>
+        <p class="description">Sunflowers (1887)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9d/Vincent_van_Gogh_-_Sunflowers_-_VGM_F458.jpg/800px-Vincent_van_Gogh_-_Sunflowers_-_VGM_F458.jpg" alt="Sunflowers">
+    </article>
+    <article>
+        <p class="description">Cafe Terrace at Night (1888)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Vincent_van_Gogh_%281853-1890%29_Caf%C3%A9terras_bij_nacht_%28place_du_Forum%29_Kr%C3%B6ller-M%C3%BCller_Museum_Otterlo_23-8-2016_13-35-40.JPG/800px-Vincent_van_Gogh_%281853-1890%29_Caf%C3%A9terras_bij_nacht_%28place_du_Forum%29_Kr%C3%B6ller-M%C3%BCller_Museum_Otterlo_23-8-2016_13-35-40.JPG" alt="Cafe Terrace at Night ">
+    </article>
+    <article>
+        <p class="description">Van Gogh self-portrait (1889)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/800px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg" alt="Van Gogh self-portrait">
+    </article>
+    <article>
+        <p class="description">The Potato Eaters (1885)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Van-willem-vincent-gogh-die-kartoffelesser-03850.jpg/1024px-Van-willem-vincent-gogh-die-kartoffelesser-03850.jpg" alt="The Potato Eaters">
+    </article>
+    <article>
+        <p class="description">Starry Night Over the Rhône (1888)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Vincent_van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1024px-Vincent_van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="Starry Night Over the Rhône">
+    </article>
+    <article>
+        <p class="description">The Red Vineyards near Arles (1888)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Red_vineyards.jpg/1024px-Red_vineyards.jpg" alt="The Red Vineyards near Arles">
+    </article>
+    <article>
+        <p class="description">Bedroom in Arles (1888)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg/1280px-Vincent_van_Gogh_-_De_slaapkamer_-_Google_Art_Project.jpg" alt="Bedroom in Arles">
+    </article>
+    <article>
+        <p class="description">Wheat Field with Cypresses (1889)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/63/Vincent_van_Gogh_-_Wheat_Field_with_Cypresses_-_Google_Art_Project.jpg/1024px-Vincent_van_Gogh_-_Wheat_Field_with_Cypresses_-_Google_Art_Project.jpg" alt="Wheat Field with Cypresses">
+    </article>
+    <article>
+        <p class="description">Irises (1889)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Irises-Vincent_van_Gogh.jpg/1024px-Irises-Vincent_van_Gogh.jpg" alt="Irises">
+    </article>
+    <article>
+        <p class="description">The Starry Night (1889)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/VanGogh-starry_night_ballance1.jpg/1024px-VanGogh-starry_night_ballance1.jpg" alt="The Starry Night">
+    </article>
+    <article>
+        <p class="description">Landscape with Wheat Sheaves and Rising Moon (1889)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Landscape_with_Wheat_Sheaves_and_Rising_Moon_%28F735%29.jpg/1024px-Landscape_with_Wheat_Sheaves_and_Rising_Moon_%28F735%29.jpg" alt="Landscape with Wheat Sheaves and Rising Moon">
+    </article>
+    <article>
+        <p class="description">Almond Blossom (1890)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project.jpg/1024px-Vincent_van_Gogh_-_Almond_blossom_-_Google_Art_Project.jpg" alt="Almond Blossom">
+    </article>
+    <article>
+        <p class="description">Still Life: Vase with Pink Roses (1890)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Roses_-_Vincent_van_Gogh.JPG/1280px-Roses_-_Vincent_van_Gogh.JPG" alt="Still Life: Vase with Pink Roses">
+    </article>
+    <article>
+        <p class="description">The Siesta (1890)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/a/a4/Van_Gogh_-_la_M%C3%A9ridienne.jpg" alt="The Siesta">
+    </article>
+    <article>
+        <p class="description">Field with Poppies (1890)</p>
+        <img class="painting" src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f3/Vincent_van_Gogh_-_Poppy_field_-_Google_Art_Project.jpg/1024px-Vincent_van_Gogh_-_Poppy_field_-_Google_Art_Project.jpg" alt="Field with Poppies">
+    </article>
+    </section>
+    </div>
+
+    <script>
+        document.getElementById("defaultOpen").click();
+
+        function openPage(evt, pageName) {
+            var i, tabcontent, tablinks;
+
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            document.getElementById(pageName).style.display = "block";
+            evt.currentTarget.className += " active";
+            }
+    </script>
+</body>
+</html>
